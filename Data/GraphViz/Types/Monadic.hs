@@ -52,7 +52,7 @@
  -}
 module Data.GraphViz.Types.Monadic
        ( Dot
-       , DotM
+       , DotM (DotM)
        , GraphID(..)
          -- * Creating a generalised DotGraph.
        , digraph
