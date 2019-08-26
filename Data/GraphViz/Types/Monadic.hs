@@ -68,6 +68,7 @@ module Data.GraphViz.Types.Monadic
        , subgraph
        , anonSubgraph
        , cluster
+       , cluster'
          -- ** Nodes
        , node
        , node'
@@ -236,6 +237,10 @@ createSubGraph isCl mid = tellStmt . MS . Sg isCl mid . (>> return ())
 -- | Add a named cluster to the graph.
 cluster :: GraphID -> DotM n a -> Dot n
 cluster = createSubGraph True . Just
+
+cluster' :: GraphID -> DotM n a -> DotM n a
+cluster' gid d@(DotM (a,_)) =
+  a <$ cluster gid d
 
 -- -----------------------------------------------------------------------------
 -- Nodes
